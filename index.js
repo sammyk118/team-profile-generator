@@ -5,35 +5,54 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 
+const team = [];
+
 function promptUser() {
-    inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'Team Member\'s name',
-        },
+    return inquirer.prompt([
+
         {
             type: 'list',
             name: 'role',
             message: 'Choose the team member\'s role',
             choices: ["Engineer", "Intern", "Manager"],
         },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'Team Member\'s email:',
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: 'Team member\'s id:',
-        },
 
-    ])
+
+    ]).then(function (role) {
+        console.log(role);
+        if (role.role == "Intern") {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'name',
+                    message: 'Team member\'s name',
+                },
+                {
+                    type: 'input',
+                    name: 'id',
+                    message: 'Team member\'s id:',
+                },
+                {
+                    type: 'input',
+                    name: 'email',
+                    message: 'Team member\'s email:',
+                },
+                {
+                    type: 'input',
+                    name: 'school',
+                    message: 'Team member\'s school:'
+                }
+            ]).then(function (intern){
+                let newIntern = new Intern(intern.name, intern.email, intern.id, intern.school);
+                console.log(newIntern);
+                team.push(newIntern);
+            })
+        }
+    })
 };
 
 const generateHTML = (data) =>
-`<!DOCTYPE html>
+    `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
