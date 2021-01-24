@@ -1,39 +1,36 @@
 // TODO: Write code to define and export the Employee class
 const inquirer = require("inquirer");
+const Employee = require("./lib/Employee");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
 
-const promptUser = () =>
-  inquirer.prompt([
-    {
-      type: 'input',
-      name: 'name',
-      message: 'What is your name?',
-    },
-    {
-      type: 'input',
-      name: 'location',
-      message: 'Where are you from?',
-    },
-    {
-      type: 'input',
-      name: 'hobby',
-      message: 'What is your favorite hobby?',
-    },
-    {
-      type: 'input',
-      name: 'food',
-      message: 'What is your favorite food?',
-    },
-    {
-      type: 'input',
-      name: 'github',
-      message: 'Enter your GitHub Username',
-    },
-    {
-      type: 'input',
-      name: 'linkedin',
-      message: 'Enter your LinkedIn URL.',
-    },
-  ]);
+function promptUser() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Team Member\'s name',
+        },
+        {
+            type: 'list',
+            name: 'role',
+            message: 'Choose the team member\'s role',
+            choices: ["Engineer", "Intern", "Manager"],
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Team Member\'s email:',
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Team member\'s id:',
+        },
+
+    ])
+};
 
 const generateHTML = (data) =>
 `<!DOCTYPE html>
@@ -60,6 +57,6 @@ const generateHTML = (data) =>
 </html>`;
 
 promptUser()
-  .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
-  .then(() => console.log('Successfully wrote to index.html'))
-  .catch((err) => console.error(err));
+//   .then((answers) => writeFileAsync('index.html', generateHTML(answers)))
+//   .then(() => console.log('Successfully wrote to index.html'))
+//   .catch((err) => console.error(err));
