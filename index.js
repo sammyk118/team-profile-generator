@@ -42,14 +42,73 @@ function promptUser() {
                     name: 'school',
                     message: 'Team member\'s school:'
                 }
-            ]).then(function (intern){
-                let newIntern = new Intern(intern.name, intern.email, intern.id, intern.school);
+            ]).then(function (intern) {
+                let newIntern = new Intern(intern.name, intern.id, intern.email, intern.school);
                 console.log(newIntern);
                 team.push(newIntern);
-            })
+            });
+
+        } else if (role.role == "Engineer") {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'name',
+                    message: 'Team member\'s name',
+                },
+                {
+                    type: 'input',
+                    name: 'id',
+                    message: 'Team member\'s id:',
+                },
+                {
+                    type: 'input',
+                    name: 'email',
+                    message: 'Team member\'s email:',
+                },
+                {
+                    type: 'input',
+                    name: 'github',
+                    message: 'Team member\'s github:'
+                }
+            ]).then(function (engineer) {
+                let newEngineer = new Engineer(engineer.name, engineer.id, engineer.email, engineer.github);
+                console.log(newEngineer);
+                team.push(newEngineer);
+            });
+        } else if (role.role == "Manager") {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'name',
+                    message: 'Team member\'s name',
+                },
+                {
+                    type: 'input',
+                    name: 'id',
+                    message: 'Team member\'s id:',
+                },
+                {
+                    type: 'input',
+                    name: 'email',
+                    message: 'Team member\'s email:',
+                },
+                {
+                    type: 'input',
+                    name: 'office',
+                    message: 'Team member\'s office number:'
+                }
+            ]).then(function (manager) {
+                let newManager = new Manager(manager.name, manager.id, manager.email, manager.office);
+                console.log(newManager);
+                team.push(newManager);
+
+            });
+
+
+
         }
     })
-};
+}
 
 const generateHTML = (data) =>
     `<!DOCTYPE html>
