@@ -46,6 +46,7 @@ function promptUser() {
                 let newIntern = new Intern(intern.name, intern.id, intern.email, intern.school);
                 console.log(newIntern);
                 team.push(newIntern);
+                addUser()
             });
 
         } else if (role.role == "Engineer") {
@@ -74,6 +75,7 @@ function promptUser() {
                 let newEngineer = new Engineer(engineer.name, engineer.id, engineer.email, engineer.github);
                 console.log(newEngineer);
                 team.push(newEngineer);
+                addUser()
             });
         } else if (role.role == "Manager") {
             inquirer.prompt([
@@ -101,15 +103,31 @@ function promptUser() {
                 let newManager = new Manager(manager.name, manager.id, manager.email, manager.office);
                 console.log(newManager);
                 team.push(newManager);
-
+                addUser();
             });
 
 
 
         }
     })
+    
 }
 
+function addUser() {
+    inquirer.prompt([
+        {
+            name: "continue",
+            message: "Add another team member?",
+            type: "confirm",
+        }
+    ]).then(function (confirm) {
+        if (confirm.continue) {
+            promptUser();
+        }
+        else
+            console.log("render the html");
+    })
+}
 const generateHTML = (data) =>
     `<!DOCTYPE html>
 <html lang="en">
