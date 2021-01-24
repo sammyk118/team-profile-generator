@@ -97,11 +97,11 @@ function promptUser() {
                 },
                 {
                     type: 'input',
-                    name: 'office',
+                    name: 'officeNumber',
                     message: 'Team member\'s office number:'
                 }
             ]).then(function (manager) {
-                let newManager = new Manager(manager.name, manager.id, manager.email, manager.office);
+                let newManager = new Manager(manager.name, manager.id, manager.email, manager.officeNumber);
                 console.log(newManager);
                 team.push(newManager);
                 addUser();
@@ -168,7 +168,7 @@ function generateHTML() {
             member += `<li class="list-group-item">School: ${team[i].school}</li>`
         }
         if (role === "Manager") {
-            member += `<li class="list-group-item">Office Number: ${team[i].office}</li>`
+            member += `<li class="list-group-item">Office Number: ${team[i].officeNumber}</li>`
         }
 
         member +=
